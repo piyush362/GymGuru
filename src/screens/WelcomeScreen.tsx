@@ -6,9 +6,12 @@ import { ButtonComponent } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
-
 const WelcomeScreen = () => {
   const navigation = useNavigation();
+
+  const handleNavigation = () => {
+    navigation.reset({ index: 0, routes: [{ name: 'HomeScreen' } as never] });
+  }
 
   return (
     <View style={styles.container}>
@@ -32,7 +35,7 @@ const WelcomeScreen = () => {
           <Animated.View entering={FadeInDown.delay(600).springify()} style={styles.buttonContainer}>
             <ButtonComponent
               label='Get Started'
-              onPress={() => navigation.navigate('HomeScreen' as never)}
+              onPress={() => handleNavigation()}
             />
           </Animated.View>
         </LinearGradient>

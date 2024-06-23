@@ -1,16 +1,16 @@
 import {
   View,
   Text,
-  Pressable,
-  PressableProps,
   StyleSheet,
   ActivityIndicator,
   StyleProp,
   ViewStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
 } from 'react-native';
 import React from 'react';
 
-interface Props extends PressableProps {
+interface Props extends TouchableOpacityProps {
   label: string;
   isLoading?: boolean;
   buttonViewStyle?: StyleProp<ViewStyle>;
@@ -23,7 +23,7 @@ export function ButtonComponent(props: Props) {
     : [styles.buttonView, props.buttonViewStyle];
 
   return (
-    <Pressable
+    <TouchableOpacity
       disabled={props.isLoading}
       style={[styles.container, props.containerStyle]}
       {...props}>
@@ -32,7 +32,7 @@ export function ButtonComponent(props: Props) {
           {props.isLoading ? <ActivityIndicator color={'#fff'} /> : props.label}
         </Text>
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 

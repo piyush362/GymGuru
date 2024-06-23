@@ -1,4 +1,15 @@
 export const Images = {
   welcome: require('../assets/welcome.jpg'),
   gear: require('../assets/gear.png'),
+  back_btn: require('../assets/left-arrow.png'),
+  body_back: require('../assets/back.jpg'),
+  body_cardio: require('../assets/cardio.jpg'),
+  body_chest: require('../assets/chest.jpg'),
+  body_l_arms: require('../assets/lowerArms.jpg'),
+  body_l_legs: require('../assets/lowerLegs.jpg'),
+  body_neck: require('../assets/neck.jpg'),
+  body_shoulders: require('../assets/shoulders.jpg'),
+  body_u_arms: require('../assets/upperArms.jpg'),
+  body_u_legs: require('../assets/upperLegs.jpeg'),
+  body_waist: require('../assets/waists.jpg'),
 };
