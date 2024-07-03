@@ -1,4 +1,4 @@
-import { Dimensions, Image, Pressable, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { Images } from '../utils/images';
@@ -21,10 +21,11 @@ export const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleExerciseNavigation = (item: handleExerciseNavigationProps) => {
-    console.log(item)
+    console.log(item.bodyPart)
     navigation.navigate({
       name: 'ExerciseScreen',
       params: {
+        name: item.name,
         bodyPart: item.bodyPart,
         bodyPartImage: item.image
       },
@@ -47,9 +48,11 @@ export const HomeScreen = () => {
               Gym <Text style={[styles.title, styles.title2]}>Guru 🙏</Text>
             </Animated.Text>
           </View>
-          <Pressable style={{ padding: 10 }}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SettingScreen' as never)}
+            style={{ padding: 10 }}>
             <Animated.Image entering={FadeInDown.delay(400).springify()} source={Images.gear} style={styles.gearIcon} />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
 
@@ -86,6 +89,18 @@ export const HomeScreen = () => {
           ))}
         </View>
       </View>
+
+      <LinearGradient
+        colors={['transparent', '#ffd75e']}
+        style={styles.footerContainer}
+      >
+        <Text style={styles.footerTitle1}>STAY
+          <Text style={styles.footerTitle2}>STRONG</Text>
+        </Text>
+        <Text>© Gym Guru 2024</Text>
+        <Text>All Right Reserved</Text>
+
+      </LinearGradient>
 
     </ScrollView>
   )
@@ -125,7 +140,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   title2: {
-    color: '#bd8e00',
+    color: '#fc5242',
   },
   gearIcon: {
     width: 30,
@@ -151,5 +166,19 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '800',
     marginBottom: 10
-  }
+  },
+  footerContainer: {
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerTitle1: {
+    fontSize: 30,
+    fontWeight: '700'
+  },
+  footerTitle2: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: '#fc5242'
+  },
 })

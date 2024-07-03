@@ -2,11 +2,24 @@ import * as React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
 
 const imagesData = [
   require('../assets/slide1.jpg'),
-  require('../assets/slide2.jpg')
+  require('../assets/slide2.jpg'),
+  require('../assets/slide3.jpg'),
+  require('../assets/slide4.jpeg'),
+  require('../assets/slide5.jpg'),
 ]
+
+const gymQuotes = [
+  "No pain, no gain.",
+  "Sweat now, shine later.",
+  "Stronger every day.",
+  "Mind over matter.",
+  "Earned, not given."
+];
+
 
 const width = Dimensions.get('window').width;
 
@@ -18,7 +31,7 @@ function MySlider() {
         width={width}
         height={width / 1.5}
         autoPlay={true}
-        data={[...new Array(2).keys()]}
+        data={imagesData}
         scrollAnimationDuration={1000}
         mode='parallax'
         renderItem={({ item, index }) => {
@@ -32,10 +45,17 @@ function MySlider() {
               }}
             >
               <Image
-                source={imagesData[index]}
+                source={item}
                 style={styles.itemImage}
               />
-              <Text style={styles.itemText}>NO GAIN, NO PAIN</Text>
+              <LinearGradient
+                colors={['transparent', '#f76b5e']}
+                style={styles.itemHeadingContainer}
+              >
+                <Animated.Text style={styles.heading}>
+                  {`${gymQuotes[index]}`}
+                </Animated.Text>
+              </LinearGradient>
             </View>
           )
         }}
@@ -58,7 +78,25 @@ const styles = StyleSheet.create({
     fontSize: 30,
     bottom: 25,
     fontWeight: '800'
-  }
+  },
+  itemHeadingContainer: {
+    width: '100%',
+    height: 150,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    bottom: 0,
+    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 40
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: '700',
+    textAlign: 'center',
+    textTransform: 'capitalize',
+    paddingBottom: 10,
+    color: '#fff'
+  },
 })
 
 export default MySlider;

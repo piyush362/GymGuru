@@ -1,6 +1,7 @@
 export const Images = {
   welcome: require('../assets/welcome.jpg'),
   gear: require('../assets/gear.png'),
+  thanks: require('../assets/thanks.jpg'),
   back_btn: require('../assets/left-arrow.png'),
   body_back: require('../assets/back.jpg'),
   body_cardio: require('../assets/cardio.jpg'),

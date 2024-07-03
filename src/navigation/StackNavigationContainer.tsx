@@ -3,6 +3,8 @@ import { ExerciseScreen, HomeScreen } from '../screens';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import { TransitionSpec } from '@react-navigation/stack/lib/typescript/src/types';
 import { Easing } from 'react-native';
+import ExerciseDetailsScreen from '../screens/ExerciseDetailsScreen';
+import SettingScreen from '../screens/SettingScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +23,7 @@ const config: TransitionSpec = {
 const CloseConfig: TransitionSpec = {
   animation: 'timing',
   config: {
-    duration: 200,
+    duration: 300,
     easing: Easing.linear
   },
 };
@@ -31,18 +33,29 @@ export default function RootStackContainer() {
     <Stack.Navigator initialRouteName='WelcomeScreen'
       screenOptions={{
         headerShown: false,
-        gestureEnabled: true,
-        gestureDirection: 'vertical',
         transitionSpec: {
           open: config,
           close: CloseConfig,
         },
-        cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS
+        cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
       }}
     >
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen
+        name="WelcomeScreen"
+        component={WelcomeScreen}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
+        }}
+      />
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS
+        }} />
       <Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />
+      <Stack.Screen name="ExerciseDetailsScreen" component={ExerciseDetailsScreen} />
+      <Stack.Screen name="SettingScreen" component={SettingScreen} />
     </Stack.Navigator>
   );
 }
